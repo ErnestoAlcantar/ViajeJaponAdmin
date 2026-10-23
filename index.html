@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+<title>Rutas Admin – Viajes a Japón</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#ffffff;--sf:#f8f8f8;--bd:#e5e5e5;--fg:#111111;--mu:#5f5f5f;--ac:#5c47f5;--acf:#ffffff}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0d0e;--sf:#161617;--bd:#2c2c2e;--fg:#f3f3f3;--mu:#a3a3a8;--ac:#8374ff;--acf:#0d0d0e}}
+:root[data-theme="dark"]{--bg:#0d0d0e;--sf:#161617;--bd:#2c2c2e;--fg:#f3f3f3;--mu:#a3a3a8;--ac:#8374ff;--acf:#0d0d0e}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.6 Outfit,system-ui,-apple-system,"Segoe UI",sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+h1,h2,h3,h4{font-weight:700;letter-spacing:-.02em;line-height:1.15;margin:0}
+a{color:inherit}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;padding:14px 24px}
+.brand{font-weight:700;font-size:1.15rem;text-decoration:none;letter-spacing:-.02em}
+nav{display:flex;gap:20px;overflow-x:auto}
+nav a{font-size:.92rem;color:var(--mu);text-decoration:none;white-space:nowrap}
+nav a:hover{color:var(--fg)}
+section{max-width:1120px;margin:auto;padding:72px 24px}
+h2{font-size:clamp(1.6rem,3.5vw,2.2rem);margin-bottom:8px}
+.sub{color:var(--mu);margin:0 0 32px;max-width:640px}
+.top{text-align:center;padding-top:80px}
+.top h1{font-size:clamp(2.2rem,6vw,3.8rem);margin-bottom:16px}
+.lead{color:var(--mu);font-size:1.15rem;max-width:640px;margin:0 auto 32px}
+.pricing>input{position:absolute;opacity:0;pointer-events:none}
+.toggle{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:44px}
+.toggle label{border:1px solid var(--bd);border-radius:8px;padding:8px 18px;font-weight:700;font-size:.92rem;cursor:pointer;background:var(--bg)}
+#m1:checked ~ .toggle label[for=m1],#m2:checked ~ .toggle label[for=m2]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+#m1:focus-visible ~ .toggle label[for=m1],#m2:focus-visible ~ .toggle label[for=m2]{outline:2px solid var(--ac);outline-offset:2px}
+.pill{background:var(--ac);color:var(--acf);border-radius:999px;padding:4px 12px;font-size:.8rem;font-weight:700;opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s}
+#m2:checked ~ .toggle .pill{opacity:1;transform:none}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:28px}
+.plan.hot{border:2px solid var(--ac);box-shadow:4px 4px 0 var(--ac)}
+.most{position:absolute;top:-14px;left:24px;background:var(--ac);color:var(--acf);border-radius:999px;padding:3px 14px;font-size:.8rem;font-weight:700}
+.plan h3{font-size:1.4rem}
+.plan .t{color:var(--mu);font-size:.92rem;margin:4px 0 20px}
+.price{margin-bottom:12px;min-height:92px}
+.amt,.fam,.total .big,td.num{font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.amt{font-size:2.5rem;line-height:1.1;transition:font-size .3s,opacity .3s,text-decoration-color .3s}
+.fam{font-size:2.5rem;line-height:1.1;max-height:0;opacity:0;overflow:hidden;transition:max-height .3s,opacity .3s}
+.u{font-size:.85rem;font-weight:400;color:var(--mu);letter-spacing:0}
+#m2:checked ~ .cards .amt{font-size:1.1rem;opacity:.55;text-decoration:line-through}
+#m2:checked ~ .cards .fam{max-height:80px;opacity:1}
+.plan .d{color:var(--mu);font-size:.95rem;margin:0 0 20px}
+.btn{display:block;text-align:center;border-radius:8px;padding:12px 20px;font:700 .98rem Outfit,system-ui,sans-serif;text-decoration:none;cursor:pointer;border:1px solid var(--bd);background:var(--bg);color:var(--fg)}
+.btn.fill{background:var(--ac);border-color:var(--ac);color:var(--acf)}
+.btn.out{border-color:var(--fg)}
+.btn:hover{border-color:var(--fg)}.btn.fill:hover{opacity:.9;border-color:var(--ac)}
+.ft{list-style:none;padding:0;margin:24px 0 0;border-top:1px solid var(--bd);padding-top:20px;font-size:.93rem}
+.ft li{padding:5px 0 5px 24px;position:relative}
+.ft li::before{content:"✓";position:absolute;left:0;color:var(--ac);font-weight:700}
+.tbl-wrap{background:var(--sf);max-width:none;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.tbl-wrap>div{max-width:1072px;margin:auto}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:var(--bg);border:1px solid var(--bd)}
+th,td{padding:14px 16px;border-bottom:1px solid var(--bd);text-align:center;font-size:.95rem}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:700}th.hot{color:var(--ac)}
+td.ok{color:var(--ac);font-weight:700}td.no{color:var(--mu)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab{border:1px solid var(--bd);background:var(--bg);color:var(--fg);border-radius:8px;padding:8px 18px;cursor:pointer;font:700 .92rem Outfit,system-ui,sans-serif}
+.tab.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.day{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--bd)}
+.day .n{flex:0 0 56px;height:56px;border-radius:8px;background:var(--sf);border:1px solid var(--bd);color:var(--ac);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:1.3rem;line-height:1}
+.day .n small{font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mu)}
+.day h4{font-size:1.05rem;margin-bottom:2px}.day p{margin:0;color:var(--mu);font-size:.95rem}
+.dblk{margin-top:36px}.dblk h4{font-size:1.15rem;margin-bottom:6px}.row{display:flex;justify-content:space-between;gap:20px;padding:11px 0;border-bottom:1px solid var(--bd);font-size:.95rem}.row span{color:var(--mu)}.row b{font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}.row.tot span{color:var(--fg);font-weight:700}.row.tot b{color:var(--ac)}
+#sum{position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:5;background:var(--bg);margin-bottom:8px;padding:16px 20px}
+.sumg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.sumg b{display:block;font-size:1.3rem;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.act{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--bd);cursor:pointer}
+.act input{width:18px;height:18px;accent-color:var(--ac)}
+.act b{display:block;font-size:1rem}.act small{display:block;color:var(--mu);font-size:.85rem}
+.act .pc{text-align:right;white-space:nowrap}.act .pc b{font-size:.95rem;font-variant-numeric:tabular-nums}
+.act.in .pc b{color:var(--ac)}.act.dis{opacity:.4;cursor:not-allowed}
+.mapbox{background:var(--sf);border:1px solid var(--bd);border-radius:12px;overflow:hidden}
+svg{width:100%;height:auto;display:block}
+.land{fill:var(--bg);stroke:var(--bd);stroke-width:1.5}
+.city{fill:var(--ac)}.lbl{font:700 13px Outfit,system-ui,sans-serif;fill:var(--fg)}
+.route{fill:none;stroke:var(--ac);stroke-width:3;stroke-dasharray:8 6;stroke-linecap:round;animation:d 1.2s linear infinite}
+.flight{stroke:var(--fg)}
+@keyframes d{to{stroke-dashoffset:-28}}
+.note{font-size:.88rem;color:var(--mu);margin-top:14px}
+.stops{display:flex;overflow-x:auto;margin-top:8px}
+.stop{flex:1 1 130px;min-width:130px;position:relative;padding:22px 8px 0;text-align:center}
+.stop::before{content:"";position:absolute;top:7px;left:0;right:0;height:2px;background:var(--bd)}
+.stop::after{content:"";position:absolute;top:0;left:50%;margin-left:-8px;width:16px;height:16px;border-radius:50%;background:var(--ac);border:3px solid var(--bg)}
+.stop b{display:block}.stop span{font-size:.85rem;color:var(--mu)}
+.quote{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.panel{border:1px solid var(--bd);border-radius:12px;padding:28px}
+.quote label{display:block;font-weight:700;font-size:.92rem;margin:14px 0 6px}
+.quote label:first-child{margin-top:0}
+select,input[type=number]{width:100%;padding:11px 12px;border-radius:8px;border:1px solid var(--bd);background:var(--bg);color:var(--fg);font:400 1rem Outfit,system-ui,sans-serif}
+.chk{display:flex!important;gap:10px;align-items:center;font-weight:400!important}.chk input{width:auto}
+.total{background:var(--sf)}
+.total .big{font-size:2.6rem;line-height:1.1}
+.total table{margin:16px 0;border:0;background:none}
+.total td{padding:7px 0;border-bottom:1px solid var(--bd);font-size:.9rem}.total td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.total .btn{background:var(--ac);border-color:var(--ac);color:var(--acf)}
+.faq{max-width:760px;border-top:1px solid var(--bd)}
+.item{border-bottom:1px solid var(--bd)}
+.fq{position:absolute;opacity:0;pointer-events:none}
+.item label{display:flex;justify-content:space-between;gap:16px;padding:20px 0;font-weight:700;font-size:1.05rem;cursor:pointer}
+.item label::after{content:"+";color:var(--ac);font-size:1.4rem;line-height:1}
+.fq:checked + label::after{content:"–"}
+.fq:focus-visible + label{outline:2px solid var(--ac);outline-offset:2px}
+.a{max-height:0;overflow:hidden;transition:max-height .3s}
+.fq:checked ~ .a{max-height:320px}
+.a p{margin:0 0 20px;color:var(--mu)}
+footer{border-top:1px solid var(--bd);padding:32px 24px;text-align:center;color:var(--mu);font-size:.9rem}
+@media(max-width:860px){.cards{grid-template-columns:1fr;gap:32px}.tbl-wrap{display:none}section{padding:56px 20px}}
+</style>
+</head>
+<body>
+<header><a class="brand" href="#">Rutas Admin</a><nav><a href="#planes">Planes</a><a href="#actividades">Actividades</a><a href="#desglose">Desglose</a><a href="#mapa">Mapa</a><a href="#escalas">Escalas</a><a href="#personaliza">Personaliza</a><a href="#cotizador">Cotizador</a><a href="#preguntas">Preguntas</a></nav></header>
+
+<section class="top" id="planes">
+<h1>Japón, el país del sol naciente</h1>
+<p class="lead">¿Será tu nuevo destino? Atrévete y explora el mundo con nosotros. Elige, cotiza tu plan y aparta tu fecha: primavera y otoño se llenan con meses de anticipación.</p>
+<div class="pricing">
+<input type="radio" name="m" id="m1" checked><input type="radio" name="m" id="m2">
+<div class="toggle"><label for="m1">Por persona</label><label for="m2">Familia de 4</label><span class="pill">Total para 4 personas</span></div>
+<div class="cards" id="plans"></div>
+</div>
+</section>
+
+<section class="tbl-wrap"><div>
+<h2>¿Qué incluye cada plan?</h2>
+<p class="sub">Aquí te mostramos todo lo que necesitas saber.</p>
+<div class="scroll"><table id="cmp"></table></div>
+</div></section>
+
+<section id="actividades">
+<h2>Lo que vas a vivir, día por día</h2>
+<p class="sub">Elige un plan y recorre su itinerario completo con todas las actividades.</p>
+<div class="tabs" id="atabs"></div>
+<div id="alist"></div>
+</section>
+
+<section id="desglose">
+<h2>Desglose de costos</h2>
+<p class="sub">Transparencia total: en qué se va cada peso de tu presupuesto, rubro por rubro. Montos en pesos mexicanos para una familia de 4 personas.</p>
+<div class="tabs" id="dtabs"></div>
+<div id="dlist"></div>
+</section>
+
+<section id="mapa">
+<h2>Mapa de rutas</h2>
+<p class="sub">Selecciona un plan para ver su recorrido. Mapa esquemático, no a escala.</p>
+<div class="tabs" id="mtabs"></div>
+<div class="mapbox">
+<svg viewBox="0 0 640 400" role="img" aria-label="Mapa esquemático de Japón y Corea del Sur">
+<path class="land" d="M40 20 L150 20 L170 90 L150 190 L110 230 L60 210 L45 120Z"/>
+<path class="land" d="M200 340 L250 310 L330 290 L400 270 L470 230 L520 150 L560 90 L600 40 L615 70 L585 150 L540 230 L490 290 L420 320 L330 345 L250 365Z"/>
+<path class="land" d="M180 365 L215 350 L235 372 L200 385Z"/>
+<text class="lbl" x="60" y="110" style="opacity:.45">COREA DEL SUR</text>
+<text class="lbl" x="470" y="70" style="opacity:.45">JAPÓN</text>
+<g id="routes"></g>
+<g id="cities"></g>
+</svg>
+</div>
+<div class="note" id="mnote"></div>
+</section>
+
+<section id="escalas">
+<h2>Ruta de escalas</h2>
+<p class="sub">Ciudades en las que te hospedas y noches en cada una.</p>
+<div class="tabs" id="stabs"></div>
+<div class="stops" id="stops"></div>
+<p class="note">Los vuelos forman parte del presupuesto de cada plan. Premier y Premier++ salen de Guadalajara con escala en Ciudad de México hacia Tokio; Premier++ suma el vuelo Osaka o Tokio ➔ Seúl y el regreso desde Seúl. En el Plan Turista cotizamos los vuelos internacionales según tu fecha.</p>
+</section>
+
+<section id="personaliza">
+<h2>Personaliza tu itinerario</h2>
+<p class="sub">Tu plan ya trae actividades incluidas. Quita las que no te interesen o agrega otras y el precio se ajusta al instante, también en tu cotización. Cada plan tiene espacios libres: un espacio es medio día o una noche, y un día completo ocupa dos. Al quitar una actividad liberas su espacio y recuperas su costo. Los precios por actividad son referenciales, por persona y en pesos mexicanos.</p>
+<div class="tabs" id="ptabs"></div>
+<div class="panel" id="sum"></div>
+<div id="acts"></div>
+<div class="tabs" style="margin-top:28px"><button class="tab" id="rst">Restablecer itinerario</button><a class="btn fill" style="display:inline-block" href="#cotizador">Ver mi cotización</a></div>
+</section>
+
+<section id="cotizador">
+<h2>Cotizador</h2>
+<p class="sub">Arma tu viaje y conoce el precio en pesos al instante. Cuando estés listo, apártalo con un clic; la cotización final depende de fechas y disponibilidad.</p>
+<div class="quote">
+<div class="panel">
+<label for="qp">Plan</label><select id="qp"></select>
+<label for="qa">Viajeros</label><input id="qa" type="number" min="1" max="12" value="4"><p class="note" style="margin-top:14px">Presupuesto estimado por persona: vuelos, hospedaje, transporte, alimentos, experiencias e imprevistos. Personaliza tu itinerario arriba y el precio se ajusta solo.</p>
+</div>
+<div class="panel total">
+<div class="u">Total estimado</div>
+<div class="big" id="tt">–</div>
+<div class="u" id="tm"></div>
+<table id="tb"></table>
+<a class="btn" id="req" href="#">¡Quiero reservar mi viaje!</a>
+</div>
+</div>
+</section>
+
+<section id="preguntas">
+<h2>Preguntas frecuentes</h2>
+<p class="sub">Lo que casi todas las familias nos preguntan antes de reservar.</p>
+<div class="faq">
+<div class="item"><input type="checkbox" class="fq" id="f1"><label for="f1">¿Qué incluye cada plan?</label><div class="a"><p>El presupuesto de cada plan cubre vuelos, hospedaje, transporte interno, alimentos, experiencias e imprevistos. En la sección Desglose de costos ves cada rubro y su monto. Al cotizar te confirmamos todo por escrito para tus fechas.</p></div></div>
+<div class="item"><input type="checkbox" class="fq" id="f2"><label for="f2">¿Cómo se calcula el precio?</label><div class="a"><p>Los montos son un presupuesto total estimado por persona, calculado para una familia de 4. Usa el interruptor “Familia de 4” para ver el total de la familia, o el cotizador para otro número de viajeros.</p></div></div>
+<div class="item"><input type="checkbox" class="fq" id="f3"><label for="f3">¿Cuál es la mejor temporada para viajar?</label><div class="a"><p>El Plan Turista está calculado para enero (temporada baja), el Premier para el otoño con hojas rojas y el Premier++ para la primavera con los cerezos en flor. Primavera y otoño son las más pedidas, así que conviene apartar con tiempo.</p></div></div>
+<div class="item"><input type="checkbox" class="fq" id="f4"><label for="f4">¿Puedo cambiar el itinerario?</label><div class="a"><p>Sí. Los planes son una base: podemos ajustar días, actividades y hoteles a lo que más le guste a tu familia. Pide tu cotización y lo platicamos.</p></div></div>
+</div>
+</section>
+
+<footer>© 2026 Sakura Rutas · Agencia de viajes · reservas@tuagencia.com<br>Precios y datos de contacto de ejemplo.</footer>
+
+<script>
+// ===== Datos editables =====
+var P={
+ basico:{n:"Plan Turista",t:"Ruta Clásica & Diversión Urbana",d:12,nt:11,price:53750,c:["Tokio","Kioto","Nara","Osaka"],
+  desc:"La ruta imprescindible de Japón combinando templos icónicos, cultura pop juvenil, compras y comida callejera.",
+  hl:["Senso-ji, Meiji Jingu y mirador gratuito de Shinjuku","Harajuku, Shibuya, Akihabara y Odaiba","Fushimi Inari, Arashiyama y Kinkaku-ji","Nara, Dotonbori y compras en tiendas de 100 yenes"],
+  stops:[["Tokio","4 noches"],["Kioto","3 noches"],["Nara","excursión de 1 día"],["Osaka","4 noches"]],
+  route:["tokyo","kyoto","nara","osaka"]},
+ intermedio:{n:"Plan Premier",t:"Inmersión Cultural, Tradición & Otoño",d:13,nt:12,price:84000,c:["Tokio","Hakone","Kioto","Nara","Osaka"],
+  desc:"Inmersión profunda en tradiciones, barrios históricos, jardines zen en otoño y gastronomía auténtica, con hoteles de 4 estrellas.",
+  hl:["teamLab Planets y Shibuya Sky","Noche en ryokan con onsen y cena kaiseki en Hakone","Kimono y ceremonia del té en Gion","Otoño en Eikando, Tofuku-ji y tren Sagano"],
+  stops:[["Tokio","4 noches"],["Hakone","1 noche (ryokan)"],["Kioto","5 noches"],["Nara","excursión de 1 día"],["Osaka","2 noches"]],
+  route:["tokyo","hakone","kyoto","nara","osaka"]},
+ alta:{n:"Plan Premier++",t:"Sakura Imperial, Tradición Zen & Seúl",d:16,nt:15,price:112000,c:["Tokio","Hakone","Kioto","Osaka","Seúl"],
+  desc:"Primavera en flor, ryokan de lujo con onsen privado y cuatro días de moda, belleza y cultura en Seúl. Traslados privados y hoteles 5 estrellas.",
+  hl:["Vuelo directo y recibimiento VIP","Teppanyaki de Kobe A5 y omakase privado","Shinkansen Green Car y ceremonia del té con maiko","Hanbok, Personal Color Analysis y K-Beauty en Seúl"],
+  stops:[["Tokio","3 noches"],["Hakone","1 noche (ryokan 5★)"],["Kioto","3 noches"],["Osaka","4 noches (Nara incl.)"],["Seúl","4 noches"]],
+  route:["tokyo","hakone","kyoto","nara","osaka","seoul"]}
+};
+var A={
+ basico:[["Llegada a Tokio","Check-in en apartahotel familiar (MIMARU o APA Hotel con habitaciones comunicadas) y paseo nocturno por el río Sumida."],["Tokio tradicional","Templo Senso-ji y compras en Nakamise-dori, santuario Meiji Jingu y mirador gratuito del Gobierno Metropolitano en Shinjuku para ver la ciudad iluminada."],["Tendencias y compras","Calle Takeshita en Harajuku con crepas gigantes y moda urbana, cruce de Shibuya, foto con Hachiko y compras en Mega Don Quijote o Shibuya 109."],["Futurista y anime","Akihabara con tiendas de anime, manga y electrónica (Radio Kaikan) y Odaiba: Gundam a escala real y réplica de la Estatua de la Libertad."],["Tren bala a Kioto","Viaje en Shinkansen y paseo por Gion y las callejuelas de Ninenzaka y Sannenzaka."],["Arcos rojos y bambú","Caminata entre los miles de torii de Fushimi Inari Taisha (entrada gratuita), Bosque de Bambú de Arashiyama y puente Togetsukyo."],["Templos de oro y mercados","Kinkaku-ji frente a su estanque espejo y recorrido de comida por el Mercado Nishiki."],["Nara y Osaka","Parque de Nara para alimentar a los ciervos sagrados, Gran Buda de Todai-ji (opcional) y traslado a Osaka."],["Sabores de Osaka","Jardines del Castillo de Osaka, canal de Dotonbori y Shinsekai con takoyaki y okonomiyaki."],["Barrio alternativo","Amerikamura, el barrio juvenil de Osaka, y souvenirs y papelería en mega-tiendas de 100 yenes (Daiso / Seria)."],["Día libre","Repite tus lugares favoritos, compras finales de cosmética y snacks o agrega un parque temático."],["Regreso a México","Traslado al aeropuerto (Kansai o Tokio) para tu vuelo de regreso."]],
+ intermedio:[["Llegada a Tokio","Traslado en tren express al hotel de 4 estrellas en Shinjuku o Ginza."],["Arte digital","Experiencia inmersiva en teamLab Planets, Santuario Meiji Jingu y parque Shinjuku Gyoen con las primeras tonalidades otoñales."],["Tokio antiguo","Templo Senso-ji, paseo por el río Sumida y Museo Nacional de Tokio en Ueno para conocer la historia de samuráis y kimonos."],["Tendencias y vistas","Harajuku y Omotesando con boutiques de diseño local y cafeterías conceptuales, y Shibuya Sky al atardecer."],["Hakone y ryokan","Teleférico sobre Owakudani y crucero por el Lago Ashi. Noche en ryokan tradicional de 4 estrellas con onsen y cena kaiseki."],["Shinkansen a Kioto","Tren bala con asientos reservados y paseo por Ninenzaka y Sannenzaka."],["Kimono y ceremonia del té","Kimono o yukata de alta calidad con peinado profesional y ceremonia del té privada en Gion con una maestra de té o maiko."],["Otoño místico","Eikando y Tofuku-ji para ver el túnel de hojas rojas (momiji) y visita nocturna a un templo iluminado."],["Naturaleza en Arashiyama","Bosque de Bambú y paseo en el Sagano Romantic Train por el cañón teñido de rojo y amarillo."],["Excursión a Nara","Templo Todai-ji con su Gran Buda de Bronce y santuario Kasuga Taisha entre ciervos sagrados."],["Osaka gastronómica","Castillo de Osaka y sus jardines, y cena por Dotonbori con carne de Kobe en restaurante local."],["Universal o talleres","Universal Studios Japan (Super Nintendo World y Harry Potter) o talleres artesanales de ramen o cuchillería tradicional."],["Regreso a México","Traslado al aeropuerto para tu vuelo de regreso."]],
+ alta:[["Bienvenida VIP","Vuelo directo México–Tokio y traslado privado en camioneta ejecutiva al hotel 5 estrellas (The Capitol Hotel Tokyu o The Prince Gallery Kioicho)."],["Cerezos imperiales","Bote de remo privado en Chidorigafuchi entre pétalos de cerezo, acceso VIP a teamLab Planets y tour nocturno por el río Meguro con copa de champán."],["Alta moda y teppanyaki","Guía privado por Harajuku, Omotesando y Ginza, y cena privada de Carne de Kobe A5 con chef teppanyaki frente a tu familia."],["Ryokan de gran lujo","Traslado privado a Hakone, teleférico sobre Owakudani y crucero por el Lago Ashi. Noche en Gora Kadan o Matsuya Besso con onsen privado en la terraza y kaiseki servido en la habitación."],["Green Car a Kioto","Shinkansen en primera clase ejecutiva y paseo privado por el Camino del Filósofo bordeado de cerezos."],["Seda y té con maiko","Estilista y kimonos de seda en la suite del hotel, y ceremonia del té privada en una casa histórica de Gion con danza y convivencia con una maiko o geisha."],["Santuarios sin filas","Transporte privado a primera hora al Bosque de Bambú de Arashiyama y los arcos rojos de Fushimi Inari Taisha."],["Osaka de autor","Traslado privado, jardines del Castillo de Osaka con cerezos en flor y omakase de sushi en un restaurante reservado solo para tu familia."],["Nara privada","Traslado ejecutivo para pasear entre los ciervos sagrados y visitar el templo Todai-ji."],["Compras de diseño","Boutiques de moda, diseño y souvenirs de lujo en Shinsaibashi y Namba."],["Día de relajación","Spa en el hotel y envío de maletas pesadas con el servicio Takkyubin."],["Vuelo a Seúl","Traslado privado y vuelo directo de 2.5 horas a Incheon. Recepción privada y check-in en The Shilla Seoul o Four Seasons Seoul."],["Hanbok y palacio real","Hanbok de alta costura con estilista, sesión de fotos profesional en el Palacio Gyeongbokgung y Bukchon Hanok Village, y cena de K-BBQ de res Hanwoo en salón privado."],["K-Beauty para las hijas","Análisis de Color Personal con una experta y boutiques de Seongsu-dong (Amorepacific / Olive Young) para crear labiales y bases personalizados con IA."],["K-Pop y vistas","Paseo privado por Hongdae, visita a la Starfield Library en COEX Mall y vistas nocturnas desde la N Seoul Tower."],["Regreso a México","Traslado privado al Aeropuerto Internacional de Incheon para tu vuelo de regreso."]]
+};
+var C={tokyo:["Tokio",470,235],hakone:["Hakone",425,262],kyoto:["Kioto",300,296],nara:["Nara",318,312],osaka:["Osaka",280,320],seoul:["Seúl",100,130]};
+// ===== Planes =====
+var $=function(i){return document.getElementById(i)};
+var fmt=function(n){return "$"+Math.round(n).toLocaleString("en-US")};
+var keys=Object.keys(P);
+var F={
+basico:["12 días / 11 noches · enero, temporada baja","Presupuesto con vuelos, hospedaje, transporte y alimentos","Apartahoteles familiares en Tokio, Kioto y Osaka","Shinkansen sin reserva y tarjeta IC","Konbini, comida rápida tradicional y callejera"],
+intermedio:["13 días / 12 noches · otoño, temporada media y alta","Vuelos GDL – CDMX – Tokio (redondo)","Hoteles 4 estrellas y 1 noche en ryokan con onsen y kaiseki","Shinkansen reservado y Hakone Freepass","teamLab Planets y Shibuya Sky","Kimono de alta gama con peinado en Gion","Ceremonia del té privada con maiko","Sagano Romantic Train y templos de otoño","Cena de carne de Kobe A5 en Osaka","Universal Studios Japan con Express Pass"],
+alta:["16 días / 15 noches · primavera, temporada alta de sakura","Vuelos a Tokio, conexión a Seúl y regreso","Hoteles 5 estrellas y ryokan 5 estrellas con onsen privado","Camionetas ejecutivas y Shinkansen Green Car","Bote privado en Chidorigafuchi y teamLab VIP","Kimonos de seda y té privado con maiko","Kobe A5 teppanyaki, omakase y K-BBQ Hanwoo","Hanbok con sesión fotográfica en Gyeongbokgung","Personal Color Analysis y maquillaje con IA","Seguro premium y servicio Takkyubin"]};
+var FAM=4;
+var BT={basico:["","Quiero el Plan Turista"],intermedio:["fill","Reservar Plan Premier"],alta:["out","Cotizar Plan Premier++"]};
+$("plans").innerHTML=keys.map(function(k){var p=P[k],hot=k=="intermedio";
+ return '<div class="plan'+(hot?' hot':'')+'">'+(hot?'<span class="most">Más popular</span>':'')+'<h3>'+p.n+'</h3><p class="t">'+p.t+'</p><div class="price"><div class="amt">'+fmt(p.price)+'<span class="u"> MXN / persona</span></div><div class="fam">'+fmt(p.price*FAM)+'<span class="u"> MXN · total para 4</span></div></div><p class="d">'+p.desc+'</p><a class="btn '+BT[k][0]+'" href="#cotizador" onclick="$(\''+'qp\').value=\''+k+'\';calc()">'+BT[k][1]+'</a><ul class="ft">'+F[k].map(function(x){return '<li>'+x+'</li>'}).join("")+'</ul></div>'}).join("");
+var R=[["Duración","12 días","13 días","16 días"],["Temporada","Enero (baja)","Otoño (media y alta)","Primavera, sakura (alta)"],["Destinos","Japón","Japón","Japón y Corea del Sur"],["Vuelos","Internacionales","GDL – CDMX – Tokio","GDL – CDMX – Tokio y Seúl"],["Hospedaje","Apartahotel familiar","Hotel 4 estrellas","Hotel 5 estrellas"],["Noche en ryokan con onsen","—","✓","✓"],["Shinkansen","Sin reserva","Reservado","Green Car"],["Traslados privados","—","—","✓"],["teamLab Planets","—","✓","✓"],["Kimono con estilista","—","✓","✓"],["Ceremonia del té privada en Gion","—","✓","✓"],["Cena de carne de Kobe","—","✓","✓"],["Universal Studios Japan con Express Pass","Opcional","✓","—"],["Hanbok y K-Beauty en Seúl","—","—","✓"],["Presupuesto por persona","$53,750 MXN","$84,000 MXN","$112,000 MXN"]];
+$("cmp").innerHTML='<tr><th></th>'+keys.map(function(k){return '<th'+(k=="intermedio"?' class="hot"':'')+'>'+P[k].n+'</th>'}).join("")+'</tr>'+R.map(function(r){return '<tr><td>'+r[0]+'</td>'+r.slice(1).map(function(v){return '<td class="'+(v=="✓"?"ok":v=="—"?"no":"")+'">'+v+'</td>'}).join("")+'</tr>'}).join("");
+// ===== Tabs =====
+function tabs(id,fn){var el=$(id);el.innerHTML=keys.map(function(k,i){return '<button class="tab'+(i?'':' on')+'" data-k="'+k+'">'+P[k].n+'</button>'}).join("");
+ el.onclick=function(e){var k=e.target.dataset.k;if(!k)return;[].forEach.call(el.children,function(b){b.classList.toggle("on",b===e.target)});fn(k)};fn(keys[0])}
+function map(k){var p=P[k],r=p.route,h="",c="";
+ for(var i=0;i<r.length-1;i++){var a=C[r[i]],b=C[r[i+1]],fl=r[i+1]=="seoul";
+  h+='<path class="route'+(fl?' flight':'')+'" d="M'+a[1]+' '+a[2]+(fl?' Q'+((a[1]+b[1])/2)+' '+(Math.min(a[2],b[2])-70):' L'+b[1]+' '+b[2]).replace(/^ Q/,' Q')+(fl?' '+b[1]+' '+b[2]:'')+'"/>'}
+ r.forEach(function(id,i){var a=C[id];c+='<circle class="city" cx="'+a[1]+'" cy="'+a[2]+'" r="7"/><text class="lbl" x="'+(a[1]+(id=="seoul"?-14:id=="tokyo"?-12:-10))+'" y="'+(a[2]+(id=="seoul"?-14:id=="osaka"||id=="nara"?20:-12))+'" text-anchor="'+(id=="tokyo"?"end":"middle")+'">'+(i+1)+'. '+a[0]+'</text>'});
+ $("routes").innerHTML=h;$("cities").innerHTML=c;
+ $("mnote").textContent=p.n+": "+p.c.join(" → ")+(k=="alta"?" (el trazo curvo es el vuelo Osaka ➔ Seúl)":"")+"."}
+tabs("mtabs",map);
+var PRE={basico:[["México","Salida"]],intermedio:[["Guadalajara","Salida"],["Ciudad de México","Escala"]]};PRE.alta=PRE.intermedio;
+var POST={basico:[["México","Regreso, día 12"]],intermedio:[["Ciudad de México","Escala"],["Guadalajara","Regreso, día 13"]],alta:[["Ciudad de México","Escala"],["Guadalajara","Regreso, día 16"]]};
+tabs("stabs",function(k){var p=P[k],h=function(a){return a.map(function(x){return '<div class="stop"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join("")};$("stops").innerHTML=h(PRE[k])+h(p.stops)+h(POST[k])});
+tabs("atabs",function(k){$("alist").innerHTML=A[k].map(function(d,i){return '<div class="day"><div class="n"><small>Día</small>'+(i+1)+'</div><div><h4>'+d[0]+'</h4><p>'+d[1]+'</p></div></div>'}).join("")});
+// ===== Desglose =====
+var D={
+basico:{t:[53750,215000],r:[["Vuelos internacionales",22875,91500,"42.5 %"],["Hospedaje (11 noches)",13750,55000,"25.5 %"],["Transporte interno (metros y tren bala)",5625,22500,"10.5 %"],["Alimentos y bebidas (12 días)",8250,33000,"15.3 %"],["Entradas, atracciones y galletas para ciervos",875,3500,"1.6 %"],["Fondo de reserva, imprevistos y tarjetas SIM",2375,9500,"4.4 %"]],
+b:[["Hospedaje · 11 noches en temporada baja (enero)",[["Tokio · 4 noches · apartahotel familiar en Asakusa o Ueno (APA Hotel con habitaciones comunicadas o MIMARU en oferta) · $5,000 por noche",20000],["Kioto · 3 noches · hotel céntrico familiar cerca de la Estación de Kioto · $5,000 por noche",15000],["Osaka · 4 noches · hotel familiar en Namba o Shinsaibashi, base para Osaka y Nara · $5,000 por noche",20000],["Total hospedaje",55000,1]]],
+["Transporte interno · 4 personas",[["Tarjeta IC (Suica o Pasmo) para metros de Tokio, Kioto y Osaka · aprox. $250 diarios por persona × 12 días",12000],["Shinkansen Tokio–Kioto sin reserva · aprox. $1,700 por persona",6800],["Trenes locales Kioto–Nara–Osaka · aprox. $175 por persona por trayecto",1400],["Traslados de aeropuerto (NEX, Limousine Bus o Haruka Express) · aprox. $575 por persona, ida y vuelta",2300],["Total transporte",22500,1]]],
+["Alimentos y bebidas · promedio de $2,750 por día para la familia",[["Desayunos en konbini (7-Eleven, Lawson, FamilyMart): onigiris, sándwiches de huevo, panes al vapor, café y té · aprox. $100 por persona","$400 MXN / día"],["Comidas en restaurantes rápidos tradicionales (Sukiya, Ichiran Ramen, Kura Sushi) · aprox. $250 por persona","$1,000 MXN / día"],["Cenas y comida callejera (Dotonbori, Nishiki, crepas en Harajuku): brochetas, takoyaki, okonomiyaki y postres · aprox. $335 por persona","$1,350 MXN / día"],["Total alimentos (12 días)",33000,1]]]]},
+intermedio:{t:[84000,336000],r:[["Vuelos (GDL – CDMX – Tokio, redondo)",26500,106000,"31.8 %"],["Hospedaje (hotel 4 estrellas y 1 noche en ryokan 4 estrellas)",25250,101000,"30.1 %"],["Transporte interno (pases, Shinkansen reservado, expreso)",8500,34000,"10.1 %"],["Alimentos y gastronomía (incluye cena kaiseki y carne de Kobe)",13250,53000,"15.8 %"],["Experiencias culturales y entradas (kimonos, té, teamLab, USJ)",7500,30000,"8.9 %"],["Seguro médico de viaje, eSIM e imprevistos",2750,11000,"3.3 %"]],
+b:[["Hospedaje · temporada media y alta de otoño",[["Tokio · 4 noches · hotel 4 estrellas en Shinjuku o Ginza (Hotel Gracery Shinjuku o The Royal Park Hotel Ginza) · $7,500 por noche",30000],["Hakone · 1 noche · ryokan 4 estrellas (Yashokuryokan o Yumoto Fujiya Hotel): habitación con tatami, onsen, cena kaiseki y desayuno tradicional para los 4",21000],["Kioto · 4 noches · hotel 4 estrellas céntrico o en Gion (Cross Hotel Kyoto) · $8,000 por noche",32000],["Osaka · 2 noches · hotel 4 estrellas en Namba (Swissôtel Nankai Osaka) · $9,000 por noche",18000],["Total hospedaje",101000,1]]],
+["Transporte interno · 4 personas",[["Tren express del aeropuerto (Narita Express o Keisei Skyliner) · aprox. $600 por persona",2400],["Hakone Freepass: tren desde Tokio, teleférico, crucero por el Lago Ashi y transporte local · aprox. $1,100 por persona",4400],["Shinkansen con asientos reservados Odawara o Tokio–Kioto · aprox. $2,200 por persona",8800],["Tarjeta IC cargada para metros y buses de Tokio, Kioto y Osaka · aprox. $350 diarios por persona × 13 días",14000],["Trenes locales y expresos Kioto–Nara–Osaka–Aeropuerto Kansai · aprox. $1,100 por persona",4400],["Total transporte",34000,1]]],
+["Experiencias culturales y entradas",[["teamLab Planets (Tokio) · aprox. $600 por persona",2400],["Shibuya Sky, mirador al atardecer · aprox. $350 por persona",1400],["Museo Nacional de Tokio y parque Shinjuku Gyoen · aprox. $250 por persona",1000],["Kimono de alta gama en Gion con peinado y vestimenta profesional · aprox. $1,500 por persona",6000],["Ceremonia del té privada en Gion con maiko o maestra · aprox. $2,000 por persona",8000],["Sagano Romantic Train (Arashiyama) y templos de otoño (Eikando y Tofuku-ji) · aprox. $800 por persona",3200],["Universal Studios Japan con Express Pass (Osaka) · $3,500 por persona",14000],["Total experiencias",30000,1]]],
+["Alimentos y gastronomía · promedio de $4,000 a $4,500 por día para la familia",[["Desayunos: incluidos en el ryokan y en la mayoría de los hoteles 4 estrellas, o cafeterías de especialidad","$6,000 MXN est."],["Comidas en restaurantes de especialidad (izakayas, tonkatsu, tempura, udon gourmet) · aprox. $400 por persona","$1,600 MXN / día"],["Cena en el ryokan: banquete kaiseki de lujo","Incluida en el hospedaje"],["Cena de carne de Kobe A5 o wagyu en Osaka · aprox. $2,000 por persona",8000],["Resto de las noches: izakayas de diseño, sushi tradicional, yakiniku","$2,000 MXN / noche"],["Total alimentos",53000,1]]]]},
+alta:{t:[112000,448000],r:[["Vuelos totales (GDL–CDMX–Tokio, Tokio–Seúl y Seúl–México)",32675,130700,"29.2 %"],["Hospedaje gran lujo 5 estrellas (14 noches de hotel y 1 noche en ryokan 5 estrellas)",35000,140000,"31.2 %"],["Transporte VIP (Shinkansen Green Car y camionetas ejecutivas)",10250,41000,"9.2 %"],["Gastronomía de autor (Kobe A5, omakase, kaiseki y K-BBQ Hanwoo)",16750,67000,"15.0 %"],["Experiencias VIP y K-Beauty (Personal Color, hanbok, geisha)",13750,55000,"12.3 %"],["Seguro premium, servicio Takkyubin (maletas) y eSIM",3575,14300,"3.1 %"]],
+b:[["Vuelos diversos · 4 personas",[["Vuelos nacionales GDL–CDMX, redondo",5000],["Vuelos internacionales CDMX–Tokio y Seúl–CDMX",113000],["Vuelo de conexión Osaka o Tokio–Seúl (Incheon)",12700],["Total vuelos",130700,1]]],
+["Hospedaje gran lujo · 15 noches en temporada alta de sakura",[["Tokio · 3 noches · hotel 5 estrellas (The Capitol Hotel Tokyu o The Prince Gallery Kioicho) · $11,000 por noche",33000],["Hakone · 1 noche · ryokan de gran lujo (Gora Kadan o Matsuya Besso): suite tradicional con onsen privado en la terraza y banquete kaiseki en la suite",25000],["Kioto · 3 noches · hotel 5 estrellas céntrico (The Thousand Kyoto o Dusit Thani Kyoto) · $11,000 por noche",33000],["Osaka · 4 noches · hotel 5 estrellas en Namba o Umeda (The St. Regis Osaka o Swissôtel) · $9,500 por noche",38000],["Seúl · 4 noches · hotel 5 estrellas (The Shilla Seoul o Four Seasons Seoul) · $8,000 por noche, con descuento por paquete de estancia",32000],["Total hospedaje",140000,1]]],
+["Transporte VIP y traslados privados",[["Traslados aeropuerto–hotel en camioneta ejecutiva privada (Tokio y Seúl)",10000],["Shinkansen en Green Car, primera clase ejecutiva, Odawara–Kioto",13000],["Chofer y van privada para tours en Hakone, Nara y Seúl",12000],["Metros VIP y tarjetas IC y T-Money precargadas",6000],["Total transporte",41000,1]]],
+["Experiencias exclusivas, VIP y K-Beauty",[["Navegación privada en Chidorigafuchi y acceso VIP a teamLab Planets (Tokio)",6000],["Kimonos de seda con estilista en la suite y ceremonia del té privada con maiko en Gion (Kioto)",16000],["Hanbok de alta costura y sesión fotográfica profesional en el Palacio Gyeongbokgung (Seúl)",10000],["Sesión privada de Personal Color Analysis y maquillaje con IA en Seongsu (Seúl)",15000],["Entradas VIP y miradores: Shibuya Sky, Starfield Library y N Seoul Tower",8000],["Total experiencias",55000,1]]],
+["Gastronomía de autor y cenas privadas · aprox. $4,200 por día para la familia",[["Desayunos gourmet","Incluidos en hoteles 5 estrellas y ryokan"],["Cena privada de carne de Kobe A5 y teppanyaki en Tokio",12000],["Banquete kaiseki de lujo en el ryokan de Hakone","Incluido en el hospedaje"],["Cena omakase de sushi de alta gama en Osaka",10000],["Cena de bienvenida K-BBQ con res Hanwoo en Seúl",9000],["Resto de comidas y cenas en restaurantes seleccionados e izakayas de autor (16 días)",36000],["Total gastronomía",67000,1]]]]}};
+var M=function(n){return fmt(n)+" MXN"};
+tabs("dtabs",function(k){var d=D[k];$("dlist").innerHTML='<div class="scroll"><table><tr><th>Rubro</th><th>Por persona</th><th>Total para 4</th><th>% del presupuesto</th></tr>'+d.r.map(function(r){return '<tr><td>'+r[0]+'</td><td class="num">'+M(r[1])+'</td><td class="num">'+M(r[2])+'</td><td class="num">'+r[3]+'</td></tr>'}).join("")+'<tr><td><b>Presupuesto total estimado</b></td><td class="num">'+M(d.t[0])+'</td><td class="num">'+M(d.t[1])+'</td><td class="num">100 %</td></tr></table></div>'+d.b.map(function(b){return '<div class="dblk"><h4>'+b[0]+'</h4>'+b[1].map(function(x){return '<div class="row'+(x[2]?' tot':'')+'"><span>'+x[0]+'</span><b>'+(typeof x[1]=="number"?M(x[1]):x[1])+'</b></div>'}).join("")+'</div>'}).join("")});
+// ===== Personaliza =====
+var CAT=["Templos y patrimonio","Vistas y cultura urbana","Moda y compras","Parques temáticos","Relax y naturaleza","Gastronomía en Japón","Seúl: belleza y moda","Seúl: historia y vistas","Seúl: gastronomía"];
+// [categoría, nombre, ciudad, descripción, precio p/p MXN, espacios, incluida en (b=Turista, i=Premier, a=Premier++), precios por plan]
+var AC=[
+[0,"Fushimi Inari Taisha","Kioto","Miles de arcos torii rojos por la montaña",0,1,"ba"],
+[0,"Senso-ji y Nakamise-dori","Tokio","El templo más antiguo de Tokio y su calle de recuerdos",0,1,"bi"],
+[0,"Kinkaku-ji, el Templo Dorado","Kioto","Pan de oro, estanque espejo y jardines zen",100,1,"b"],
+[0,"Kiyomizu-dera","Kioto","Terraza de madera sin clavos con vistas a la ciudad",100,1,""],
+[0,"Santuario Meiji Jingu","Tokio","Oasis espiritual en un bosque en pleno centro",0,1,"bi"],
+[0,"Castillo de Himeji","Himeji","La “Garza Blanca”, el castillo feudal mejor conservado",800,2,""],
+[0,"Miyajima y Santuario Itsukushima","Hiroshima","El torii flotante sobre el mar",3000,2,""],
+[0,"Santuario Nikko Toshogu","Nikko","Templos entre cedros milenarios y los tres monos sabios",1000,2,""],
+[0,"Santuario Kifune","Kioto","Escalinatas con linternas rojas; cenas Kawadoko en verano",300,1,""],
+[1,"Shibuya Sky","Tokio","Mirador a más de 200 m con vista de 360°",350,1,"i"],
+[1,"Harajuku y calle Takeshita","Tokio","Moda juvenil, ropa vintage y crepas gigantes",0,1,"bia"],
+[1,"teamLab Planets / Borderless","Tokio","Arte digital inmersivo: caminas sobre agua",600,1,"ia"],
+[1,"Bosque de Bambú de Arashiyama","Kioto","Paseo entre imponentes tallos de bambú",0,1,"bia"],
+[1,"Río Meguro o Chidorigafuchi","Tokio","Paseo en bote o a pie entre cerezos",900,1,"a"],
+[1,"Dotonbori","Osaka","Neón gigante, canales y vida nocturna",0,1,"bi"],
+[1,"Roppongi Hills y Tokyo City View","Tokio","Mirador con vista a la Torre de Tokio iluminada",250,1,""],
+[1,"Shinsekai y Torre Tsutenkaku","Osaka","Barrio retro de la era Showa y kushikatsu",150,1,"b"],
+[1,"Street Karting en Tokio","Tokio","Recorre calles reales disfrazado de personaje",1400,1,""],
+[1,"Warner Bros. Studio Tour Tokyo","Tokio","The Making of Harry Potter",1000,2,""],
+[1,"Cafeterías temáticas","Tokio / Osaka","Búhos, capibaras, gatos y Pokémon Cafe",400,1,""],
+[1,"Museo Nacional de Tokio y Shinjuku Gyoen","Tokio","Samuráis, kimonos y jardines de otoño",250,1,"i"],
+[2,"Ginza Six y Uniqlo","Tokio","El Uniqlo más grande del mundo y plazas de lujo",0,1,"a"],
+[2,"Shinsaibashi-suji y Amerikamura","Osaka","Galerías techadas y moda urbana alternativa",0,1,"ba"],
+[2,"Nakano Broadway","Tokio","Coleccionismo vintage, anime y cultura pop",0,1,""],
+[3,"Universal Studios Japan","Osaka","Super Nintendo World y Wizarding World of Harry Potter",3500,2,"i"],
+[3,"Tokyo DisneySea","Tokio","El Disney centrado en mitos náuticos y océanos",1300,2,""],
+[3,"Ghibli Park / Museo Ghibli","Nagoya / Tokio","Totoro y El Viaje de Chihiro",900,2,""],
+[3,"Fuji-Q Highland","Yamanashi","Montañas rusas récord con el Monte Fuji de fondo",1500,2,""],
+[3,"Sanrio Puroland","Tokio","Hello Kitty y estilo kawaii bajo techo",600,2,""],
+[3,"Nijigen no Mori","Isla Awaji","Naruto, Godzilla y Dragon Quest a escala real",1500,2,""],
+[4,"Ryokan con onsen","Hakone o Kawaguchiko","Cena kaiseki y aguas termales con vista al Fuji",4000,2,"ia",{intermedio:3400,alta:3500}],
+[4,"Parque de Nara y ciervos sagrados","Nara","Cientos de ciervos amigables en libertad",100,1,"bia"],
+[4,"Kusatsu Onsen","Gunma","Yubatake y baños curativos",1500,2,""],
+[4,"Isla de Naoshima","Mar Interior de Seto","Isla-galería y calabaza amarilla de Kusama",2400,2,""],
+[4,"Valle de Kamikochi","Alpes Japoneses","Senderismo de lujo (mayo a noviembre)",2200,2,""],
+[4,"Kimono y ceremonia del té en Gion","Kioto","Kimono con peinado y té con maiko",3500,2,"ia",{alta:4000}],
+[5,"Cena de carne de Kobe A5","Osaka o Tokio","Teppanyaki frente a ti",2000,1,"ia",{alta:3000}],
+[5,"Sushi omakase","Osaka","Piezas personalizadas del maestro chef",2500,1,"a"],
+[5,"Mercado Nishiki o Kuromon","Kioto / Osaka","Mariscos, pinchos y brochetas locales",300,1,"b"],
+[5,"Taller de cuchillería artesanal","Sakai / Kioto","Cuchillos forjados con tu nombre grabado",900,1,""],
+[5,"Taller de ramen o comida de plástico","Tokio","Prepara tu ramen o réplicas de cera",800,1,""],
+[5,"Cena flotante en Yakatabune","Tokio","Tempura y barra libre en bote con linternas rojas",1800,1,""],
+[5,"Mercados Toyosu y Tsukiji","Tokio","Desayuno de atún, tamagoyaki y erizo fresco",500,1,""],
+[6,"Personal Color Analysis","Seúl","Paleta de colores para ropa, tintes y cosméticos",2250,1,"a"],
+[6,"K-Beauty con IA en Amorepacific Seongsu","Seúl","Base o labial personalizado con tu nombre",1500,1,"a"],
+[6,"Flagships de skincare","Seúl","Olive Young N Seongsu y Sulwhasoo Bukchon",0,1,"a"],
+[6,"Spa facial K-Beauty y head spa","Seúl","Glass skin y bienestar capilar",1300,1,""],
+[6,"Seongsu-dong y pop-up stores","Seúl","El Brooklyn de Seúl: Tamburins y Gentle Monster",0,1,"a"],
+[6,"Myeongdong y Hongdae","Seúl","Moda vanguardista, K-Pop y cosmética",0,1,"a"],
+[7,"Palacio Gyeongbokgung con hanbok","Seúl","Hanbok de alta costura y sesión fotográfica",2500,1,"a"],
+[7,"Aldea Hanok de Bukchon","Seúl","Casas tradicionales con rascacielos al fondo",0,1,"a"],
+[7,"Templo Bongeunsa","Seúl","Buda de 23 metros en pleno Gangnam",0,1,""],
+[7,"N Seoul Tower","Seúl","Panorámicas nocturnas y muro de candados",400,1,"a"],
+[7,"Biblioteca Starfield","Seúl","Estanterías de 13 metros en COEX Mall",0,1,"a"],
+[8,"K-BBQ de carne Hanwoo","Seúl","Res Hanwoo con decenas de banchan",2250,1,"a"],
+[8,"Mercado Gwangjang","Seúl","Bindaetteok, tteokbokki y dumplings",400,1,""],
+[8,"Cafeterías de diseño","Seúl","Nudake, Onion Anguk y repostería de autor",300,1,""],
+[8,"Picnic en el río Han","Seúl","Pollo frito coreano al atardecer",400,1,""]
+];
+var LT={basico:"b",intermedio:"i",alta:"a"},FREE={basico:2,intermedio:1,alta:2},cur="",ON={};
+function pr(a,k){return a[7]&&a[7][k]!=null?a[7][k]:a[4]}
+function vis(a,k){return a[0]<6||k=="alta"}
+function inc(a,k){return a[6].indexOf(LT[k])>-1}
+function mny(p){return p?fmt(p)+" p/p":"Gratis"}
+function stat(k){var r={add:[],rem:[],as:0,rs:0,used:0,cap:FREE[k]};
+ AC.forEach(function(a,i){if(!vis(a,k))return;var on=ON[i],ic=inc(a,k);
+  if(on&&!ic){r.add.push(a);r.as+=pr(a,k);r.used+=a[5]}
+  if(!on&&ic){r.rem.push(a);r.rs+=pr(a,k);r.cap+=a[5]}});return r}
+function build(){var k=$("qp").value,h="";cur=k;ON={};
+ AC.forEach(function(a,i){if(vis(a,k)&&inc(a,k))ON[i]=1});
+ [].forEach.call($("ptabs").children,function(b){b.classList.toggle("on",b.dataset.k==k)});
+ CAT.forEach(function(c,ci){var rows=[];AC.forEach(function(a,i){if(a[0]==ci&&vis(a,k))rows.push(i)});if(!rows.length)return;
+  h+='<div class="dblk"><h4>'+c+'</h4>'+rows.map(function(i){var a=AC[i];return '<label class="act" id="a'+i+'"><input type="checkbox" data-i="'+i+'"'+(ON[i]?' checked':'')+'><span><b>'+a[1]+'</b><small>'+a[2]+' · '+a[3]+'</small></span><span class="pc" id="p'+i+'"></span></label>'}).join("")+'</div>'});
+ if(k!="alta")h+='<p class="note">Los destinos de Seúl solo están disponibles en el Plan Premier++.</p>';
+ $("acts").innerHTML=h;refresh()}
+function refresh(){var k=cur,st=stat(k);
+ AC.forEach(function(a,i){if(!vis(a,k))return;var on=!!ON[i],ic=inc(a,k),p=pr(a,k),row=$("a"+i),t;
+  if(ic)t=on?"En tu plan":"Quitada · −"+mny(p);else t=on?"+"+mny(p):mny(p);
+  $("p"+i).innerHTML='<b>'+t+'</b><small>'+(a[5]==2?"Día completo":"Medio día")+'</small>';
+  var bad=!on&&(ic?st.used>st.cap-a[5]:st.used+a[5]>st.cap);
+  row.querySelector("input").disabled=bad;row.classList.toggle("dis",bad);row.classList.toggle("in",on&&ic)});
+ calc()}
+$("acts").addEventListener("change",function(e){var i=e.target.dataset.i;if(i==null)return;if(e.target.checked)ON[i]=1;else delete ON[i];refresh()});
+$("rst").onclick=function(){build()};
+// ===== Cotizador =====
+$("qp").innerHTML=keys.map(function(k){return '<option value="'+k+'">'+P[k].n+' – '+P[k].t+'</option>'}).join("");
+var SEA={basico:"Enero (temporada baja)",intermedio:"Otoño (temporada media y alta)",alta:"Primavera, sakura (temporada alta)"};
+function calc(){var kk=$("qp").value;if(kk!=cur){build();return}
+ var p=P[kk],n=Math.max(1,Math.round(+$("qa").value||1)),st=stat(kk),d=st.as-st.rs,pp=p.price+d,t=pp*n;
+ $("sum").innerHTML='<div class="sumg"><div><span class="u">Espacios libres</span><b>'+(st.cap-st.used)+' de '+st.cap+'</b></div><div><span class="u">Ajuste por persona</span><b>'+(d<0?"−":"+")+fmt(Math.abs(d))+'</b></div><div><span class="u">Precio por persona</span><b>'+fmt(pp)+'</b></div><div><span class="u">Total para '+n+'</span><b>'+fmt(t)+' MXN</b></div></div>';
+ $("tt").textContent=fmt(t)+" MXN";$("tm").textContent="Presupuesto estimado para "+n+(n==1?" viajero":" viajeros");
+ var rows=[[p.n,p.d+' días / '+p.nt+' noches'],["Temporada",SEA[kk]],["Precio base por persona",fmt(p.price)+" MXN"]];
+ if(st.as)rows.push(["Actividades agregadas ("+st.add.length+")","+"+fmt(st.as)+" MXN"]);
+ if(st.rs)rows.push(["Actividades quitadas ("+st.rem.length+")","−"+fmt(st.rs)+" MXN"]);
+ rows.push(["Precio por persona",fmt(pp)+" MXN"],["Viajeros",n]);
+ $("tb").innerHTML=rows.map(function(r){return "<tr><td>"+r[0]+"</td><td>"+r[1]+"</td></tr>"}).join("");
+ var nm=function(a){return a.map(function(x){return x[1]}).join(", ")};
+ $("req").href="mailto:reservas@tuagencia.com?subject="+encodeURIComponent("Cotización "+p.n)+"&body="+encodeURIComponent(p.n+" · "+n+" viajeros · Presupuesto estimado "+fmt(t)+" MXN ("+fmt(pp)+" por persona)"+(st.add.length?"\nActividades agregadas: "+nm(st.add):"")+(st.rem.length?"\nActividades quitadas: "+nm(st.rem):""))}
+tabs("ptabs",function(k){$("qp").value=k;calc()});
+document.querySelector(".quote").addEventListener("input",calc);
+</script>
+</body>
+</html>
